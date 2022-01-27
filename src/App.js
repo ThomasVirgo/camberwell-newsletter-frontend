@@ -19,7 +19,7 @@ const App = () => {
             <Route exact path="register" element={<Register />} />
             <Route exact path="verify/:code" element={<Verify />} />
             <Route element={<ProtectedRoute/>}>
-              <Route exact path="dashboard" element={<Dashboard />} />
+              <Route exact path="dashboard/*" element={<Dashboard />} />
             </Route>
         </Routes>
       </BrowserRouter>

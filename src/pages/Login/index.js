@@ -1,6 +1,6 @@
 import React, { useState, useContext } from "react";
 import { login, getUser } from "../../lib/requests_auth";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { authContext } from "../../contexts/AuthContext";
 
 
@@ -43,6 +43,7 @@ const Login = () => {
             <input onChange={handleChange} name="password" type='password' placeholder="password" required></input>
             <input type='submit' value='Login'></input>
         </form>
+        <p>Don't have an account? <Link to='/register'>Register Here</Link></p>
         <p>{error}</p>
         </>
     )

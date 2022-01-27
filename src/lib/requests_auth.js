@@ -38,7 +38,14 @@ async function getUser(token){
 }
 
 async function logout(){
-
+    try {
+        const {data} = await axios.get(`${BASE_URL}/logout`, {
+            headers: tokenHeader()
+        })
+        return data
+    } catch (error) {
+        console.log('unable to logout');
+    }
 }
 
 async function changePassword(){
@@ -59,4 +66,4 @@ function tokenHeader(token=false){
 }
 
 
-export { signup, verify, login, getUser }
+export { signup, verify, login, logout, getUser }

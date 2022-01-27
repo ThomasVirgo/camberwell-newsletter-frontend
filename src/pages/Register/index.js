@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { signup } from '../../lib/requests_auth'
+import { Link } from "react-router-dom";
 
 
 const Register = () => {
@@ -45,6 +46,7 @@ const Register = () => {
             <input onChange = {handleChange} name='password2' type='password' placeholder="confirm password" required></input>
             <input type="submit" value='Sign Up' />
         </form>
+        <p>Already have an account? <Link to='/login'>Sign In</Link></p>
         </>
     )
 }
