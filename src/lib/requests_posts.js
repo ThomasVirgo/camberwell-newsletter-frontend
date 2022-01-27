@@ -24,8 +24,19 @@ async function getPosts(){
     }
 }
 
+async function getCommentsForPost(postid){
+    try {
+        const {data} = await axios.get(`${BASE_URL}/post_comments/`, {
+            headers: tokenHeader()
+        })
+        return [data, false]
+    } catch (error) {
+        return [error.response, true]
+    }
+}
+
 function tokenHeader(){
     return { "Authorization": `Token ${localStorage.getItem('token')}` }
 }
 
-export { createPost, getPosts }
+export { createPost, getPosts, getCommentsForPost }
