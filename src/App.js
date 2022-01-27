@@ -1,24 +1,31 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import {
+  BrowserRouter,
+  Routes,
+  Route
+} from "react-router-dom";
+import { ProtectedRoute, Login, Register, Verify, Dashboard } from './pages'
 
-function App() {
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <h1 id='Newsletter Header' className="text-3xl font-bold underline">
+        142A Newsletter
+      </h1>
+
+      <BrowserRouter>
+        <Routes>
+            <Route exact path="login" element={<Login />} />
+            <Route exact path="register" element={<Register />} />
+            <Route exact path="verify/:code" element={<Verify />} />
+            <Route element={<ProtectedRoute/>}>
+              <Route exact path="dashboard" element={<Dashboard />} />
+            </Route>
+        </Routes>
+      </BrowserRouter>
+
+    </>
+
   );
 }
 
