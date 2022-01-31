@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { getCommentsForPost } from "../../lib/requests_posts";
+import { Comment } from "..";
 
 const Post = ({info}) => {
     // {
@@ -28,12 +29,15 @@ const Post = ({info}) => {
         setAreCommentsShowing(prev => !prev)
     }
     let img_url = info.image.replace("download", "view")
+    let commentElements = comments.map((c, idx) => <div key={idx}><Comment data={c}></Comment></div>)
+
     return (
         <>
         <h1>{info.title}</h1>
         <p>{info.content}</p>
         <img src={img_url} alt=""/>
-        <button onClick = {toggleComments}>Show Comments</button>
+        <button onClick = {toggleComments}>{areCommentsShowing ? 'Hide' : 'Show'} Comments</button>
+        {areCommentsShowing && commentElements}
         </>
     )
 }
