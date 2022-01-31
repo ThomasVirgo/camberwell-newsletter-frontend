@@ -24,9 +24,9 @@ async function getPosts(){
     }
 }
 
-async function getCommentsForPost(postid){
+async function getCommentsForPost(post_id){
     try {
-        const {data} = await axios.get(`${BASE_URL}/post_comments/`, {
+        const {data} = await axios.get(`${BASE_URL}/post_comments/${post_id}/comments_on_post/`, {
             headers: tokenHeader()
         })
         return [data, false]
