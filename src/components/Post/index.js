@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { getCommentsForPost } from "../../lib/requests_posts";
-import { Comment } from "..";
+import { Comment, CommentForm } from "..";
 
 const Post = ({info}) => {
     // {
@@ -38,6 +38,7 @@ const Post = ({info}) => {
         <img src={img_url} alt=""/>
         <button onClick = {toggleComments}>{areCommentsShowing ? 'Hide' : 'Show'} Comments</button>
         {areCommentsShowing && commentElements}
+        <CommentForm post_id = {info.id}></CommentForm>
         </>
     )
 }

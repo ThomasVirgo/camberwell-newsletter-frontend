@@ -39,8 +39,20 @@ async function createPost(formData){
     }
 }
 
+
+async function createComment(payload){
+    try {
+        const {data} = await axios.post(`${BASE_URL}/post_comments/add_comment_by_email/`, payload, {
+                headers: tokenHeader()
+        })
+        return [data, false]
+    } catch (error) {
+        return [error.response, true]
+    }
+}
+
 function tokenHeader(){
     return { "Authorization": `Token ${localStorage.getItem('token')}` }
 }
 
-export { createPost, getPosts, getCommentsForPost }
+export { createPost, getPosts, getCommentsForPost, createComment }
