@@ -30,20 +30,21 @@ const Post = ({info}) => {
     }
     let img_url = info.image.replace("download", "view")
     let commentElements = comments.map((c, idx) => <div key={idx}><Comment data={c}></Comment></div>)
+    let options = { weekday: 'short', year: 'numeric', month: 'short', day: 'numeric' }
 
     return (
         <div className="relative bg-white py-6 px-6 rounded-3xl w-80 h-80 my-4 shadow-xl">
             <div className="mt-8">
                 <p className="text-lg font-semibold my-2">{info.title}</p>
                 <div>
-                    <img class="object-scale-down h-48 w-96" src={img_url}/>
+                    <img className="object-scale-down h-48 w-96" src={img_url}/>
                 </div>
                 <div className="flex justify-between">
                     <div className="my-2">
-                        <p className="font-semibold text-base mb-2">Author</p>
+                        <p className="font-semibold text-base mb-2">{info.author_names.first_name} {info.author_names.last_name}</p>
                     </div>
                      <div className="my-2">
-                        <p className="font-semibold text-gray-400 mb-2">Date</p>
+                        <p className="font-semibold text-gray-400 mb-2">{new Date(info.date).toLocaleDateString("en-US", options)}</p>
                     </div>
                 </div>
             </div>

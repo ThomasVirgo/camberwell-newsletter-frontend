@@ -25,6 +25,7 @@ const Posts = () => {
     }, [])
 
     async function handleSubmit(event){
+        // need to wait for the post to be successful before doing anything else, i.e. freeze page
         event.preventDefault()
         console.log(postInput);
         let formData = new FormData();
@@ -75,8 +76,8 @@ const Posts = () => {
             <button onClick={()=>setPostInput({...postInput, "image": null})}>Remove</button>
         </div>}
         
-        <div class="flex items-center justify-center">
-            <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3">
+        <div className="flex items-center justify-center">
+            <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3">
                 {postElements}
             </div>
         </div>
