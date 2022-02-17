@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { getPosts, createPost } from "../../lib/requests_posts";
-import { Post } from "../../components";
+import { Post, PostModal } from "../../components";
 
 const Posts = () => {
     const [posts, setPosts] = useState([])
     const [isFormShowing, setIsFormShowing] = useState(false)
+    const [isModalShowing, setIsModalShowing] = useState(false)
+    const [modalData, setModalData] = useState(null)
     const [postInput, setPostInput] = useState({
         "title": "",
         "content": "",
@@ -55,9 +57,15 @@ const Posts = () => {
         setIsFormShowing(prev => !prev)
     }
 
-    const postElements = posts.map((p, idx) => <div key={idx}><Post info={p}/></div>)
+    function toggleModal(info=null){
+        setIsModalShowing(prev => !prev)
+        setModalData(info)
+    }
+
+    const postElements = posts.map((p, idx) => <div key={idx}><Post info={p} toggleModal={toggleModal}/></div>)
     return (
         <>
+        {isModalShowing && <PostModal toggleModal={toggleModal} info={modalData}/>}
         <h1>Posts</h1>
         <button onClick={toggleForm}>Add new post +</button>
 
