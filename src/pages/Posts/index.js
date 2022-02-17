@@ -66,8 +66,9 @@ const Posts = () => {
     return (
         <>
         {isModalShowing && <PostModal toggleModal={toggleModal} info={modalData}/>}
-        <h1>Posts</h1>
-        <button onClick={toggleForm}>Add new post +</button>
+        <button onClick={toggleForm} className="flex fixed z-50 bg-gray-400 mx-2 shadow w-32 block border-blue-600 border-2 rounded-full focus:outline-none focus:border-blue-600 px-4 py-2 text-blue-600 hover:bg-blue-600 hover:text-white">
+            <span>New Post +</span>
+        </button>
 
         { isFormShowing &&
         <form onSubmit={handleSubmit}>

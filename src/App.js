@@ -8,10 +8,7 @@ import { ProtectedRoute, Login, Register, Verify, Dashboard } from './pages'
 
 const App = () => {
   return (
-    <>
-      <h1 id='Newsletter Header' className="text-3xl font-bold underline">
-        142A Newsletter
-      </h1>
+      
 
       <BrowserRouter>
         <Routes>
@@ -24,7 +21,6 @@ const App = () => {
         </Routes>
       </BrowserRouter>
 
-    </>
 
   );
 }

@@ -1,31 +1,16 @@
-import React, { useContext } from "react";
-import { authContext } from '../../contexts/AuthContext';
+import React from "react";
 import { Route, Routes, Link } from "react-router-dom";
-import { Posts, Suggestions,Account } from "..";
-import { logout } from "../../lib/requests_auth";
+import { Posts, Account } from "..";
+import { Nav } from "../../components";
 
 const Dashboard = () => {
-    const { auth, setAuthData } = useContext(authContext);
-
-    async function logoutUser(){
-        const data = await logout()
-        localStorage.clear()
-        setAuthData(null)
-        console.log(data);
-    }
 
     return (
         <>
-        <nav>
-            <Link to="account">{auth.data.first_name}</Link>
-            <Link to="posts">Posts</Link>
-            <Link to="suggestions">Suggestion Box</Link>
-            <button onClick = {logoutUser}>Logout</button>
-        </nav>
+        <Nav/>
         <Routes>
             <Route path="account" element={<Account />} />
             <Route path="posts" element={<Posts />} />
-            <Route path="suggestions" element={<Suggestions />} />
         </Routes>
         </>
     )
