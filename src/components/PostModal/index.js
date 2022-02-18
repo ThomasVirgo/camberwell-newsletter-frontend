@@ -44,7 +44,7 @@ const PostModal = ({toggleModal, info}) => {
                 <div className="px-4 py-2 border-t border-t-gray-500 flex justify-start items-center space-x-4 ">
                     <button onClick={toggleComments} className="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition">{areCommentsShowing ? 'Hide' : 'Show'} Comments</button>
                 </div>
-                <div className="max-h-48 overflow-y-scroll p-4">
+                <div className="max-h-72 overflow-y-scroll p-4">
                     <CommentForm post_id = {info.id}></CommentForm>
                     {areCommentsShowing && commentElements}
                 </div>

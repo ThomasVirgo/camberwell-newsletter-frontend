@@ -6,10 +6,20 @@ import { logout } from "../../lib/requests_auth";
 const Nav = () => {
     const [isOpen, setIsOpen] = useState(false);
     const { auth, setAuthData } = useContext(authContext);
+    console.log(auth);
     const {pathname} = useLocation();
     let pathArr = pathname.split('/')
     let path = pathArr[pathArr.length - 1]
     let pathWord = path[0].toUpperCase() + path.slice(1)
+    let headerText;
+
+    switch(pathWord) {
+      case 'Account':
+        headerText = `${pathWord} - ${auth.data.first_name} ${auth.data.last_name}`
+        break;
+      default:
+        headerText = pathWord
+    }
 
     async function logoutUser(){
         const data = await logout()
@@ -94,7 +104,7 @@ const Nav = () => {
   
         <header className="bg-white shadow">
           <div className="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-            <h1 className="text-3xl font-bold text-gray-900">{pathWord}</h1>
+            <h1 className="text-2xl font-bold text-gray-900">{headerText}</h1>
           </div>
         </header>
       </div>
