@@ -1,17 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { getPosts, createPost } from "../../lib/requests_posts";
-import { Post, PostModal } from "../../components";
+import { Post, PostModal, PostForm } from "../../components";
 
 const Posts = () => {
     const [posts, setPosts] = useState([])
     const [isFormShowing, setIsFormShowing] = useState(false)
     const [isModalShowing, setIsModalShowing] = useState(false)
     const [modalData, setModalData] = useState(null)
-    const [postInput, setPostInput] = useState({
-        "title": "",
-        "content": "",
-        "image": null
-    })
     
     
     useEffect(()=>{
@@ -26,32 +21,6 @@ const Posts = () => {
         requestPosts()
     }, [])
 
-    async function handleSubmit(event){
-        // need to wait for the post to be successful before doing anything else, i.e. freeze page
-        event.preventDefault()
-        console.log(postInput);
-        let formData = new FormData();
-        formData.append('image', postInput.image, postInput.image.name);
-        formData.append('title', postInput.title);
-        formData.append('content', postInput.content);
-        formData.append('author', JSON.parse(localStorage.getItem('authData')).email)
-        let [data, isError] = await createPost(formData)
-        console.log(data);
-    }
-
-    function handleChange(event){
-        if (event.target.name === 'image'){
-            let newInput = {
-                ...postInput,
-                "image": event.target.files[0]
-            }
-            setPostInput(newInput)
-            return
-        }
-        let newInput = {...postInput}
-        newInput[event.target.name] = event.target.value
-        setPostInput(newInput)
-    }
 
     function toggleForm(){
         setIsFormShowing(prev => !prev)
@@ -65,25 +34,18 @@ const Posts = () => {
     const postElements = posts.map((p, idx) => <div key={idx}><Post info={p} toggleModal={toggleModal}/></div>)
     return (
         <>
+        <div className="bg-white shadow mt-2">
+          <div className="max-w-7xl py-6 sm:px-6 lg:px-8">
+            <button onClick={toggleForm} className="flex z-50 mx-2 shadow w-32 block border-blue-600 border-2 rounded-full focus:outline-none focus:border-blue-600 px-4 py-2 text-blue-600 hover:bg-blue-600 hover:text-white">
+                <span>New Post +</span>
+            </button>
+          </div>
+        </div>
         {isModalShowing && <PostModal toggleModal={toggleModal} info={modalData}/>}
-        <button onClick={toggleForm} className="flex fixed z-50 bg-gray-400 mx-2 shadow w-32 block border-blue-600 border-2 rounded-full focus:outline-none focus:border-blue-600 px-4 py-2 text-blue-600 hover:bg-blue-600 hover:text-white">
-            <span>New Post +</span>
-        </button>
+        
 
-        { isFormShowing &&
-        <form onSubmit={handleSubmit}>
-            <input type='text' placeholder="title" name='title' onChange={handleChange}></input>
-            <textarea name="content" rows="4" cols="50" onChange={handleChange}></textarea>
-            <input type='file' name='image' onChange={handleChange}></input>
-            <input type='submit' value='Submit'></input>
-        </form>}
+        { isFormShowing && <PostForm/>}
 
-        {postInput.image && isFormShowing && 
-        <div>
-            <img alt="not fount" width={"250px"} src={URL.createObjectURL(postInput.image)} />
-            <br />
-            <button onClick={()=>setPostInput({...postInput, "image": null})}>Remove</button>
-        </div>}
         
         <div className="flex items-center justify-center">
             <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3">

@@ -40,7 +40,7 @@ const Nav = () => {
                   <div className="ml-10 flex items-baseline space-x-4">
                     <Link to="account" className=" hover:bg-gray-700 text-white px-3 py-2 rounded-md text-sm font-medium">Account</Link>
                     <Link to="posts" className=" hover:bg-gray-700 text-white px-3 py-2 rounded-md text-sm font-medium">Posts</Link>
-                    <Link to="newsletters" className=" hover:bg-gray-700 text-white px-3 py-2 rounded-md text-sm font-medium">Meals</Link>
+                    <Link to="meals" className=" hover:bg-gray-700 text-white px-3 py-2 rounded-md text-sm font-medium">Meals</Link>
                     <Link to="newsletters" className=" hover:bg-gray-700 text-white px-3 py-2 rounded-md text-sm font-medium">Newsletters</Link>
                     <button onClick = {logoutUser} className=" hover:bg-gray-700 text-white px-3 py-2 rounded-md text-sm font-medium">Logout</button>
                   </div>
@@ -97,7 +97,7 @@ const Nav = () => {
                 <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
                     <Link to="account" className="hover:bg-gray-700 text-white block px-3 py-2 rounded-md text-base font-medium">Account</Link>
                     <Link to="posts" className="hover:bg-gray-700 text-white block px-3 py-2 rounded-md text-base font-medium">Posts</Link>
-                    <Link to="newsletters" className="hover:bg-gray-700 text-white block px-3 py-2 rounded-md text-base font-medium">Meals</Link>
+                    <Link to="meals" className="hover:bg-gray-700 text-white block px-3 py-2 rounded-md text-base font-medium">Meals</Link>
                     <Link to="newsletters" className="hover:bg-gray-700 text-white block px-3 py-2 rounded-md text-base font-medium">Newsletters</Link>
                     <button onClick = {logoutUser} className="hover:bg-gray-700 text-white block w-full text-left px-3 py-2 rounded-md text-base font-medium">Logout</button>
                 </div>
