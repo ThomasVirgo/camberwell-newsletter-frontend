@@ -16,13 +16,18 @@ const CommentForm = ({post_id}) => {
             "author": JSON.parse(localStorage.getItem('authData')).email
         }
         let [data, isError] = await createComment(payload)
+        setComment("")
         console.log(data);
     }
 
     return (
         <form onSubmit={handleSubmit}>
-            <input type="text" name="comment" onChange={handleChange} />
-            <input type="submit" value="Add Comment" />
+            <textarea id="comment" name="comment" onChange={handleChange} rows="2" className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Leave a comment..."></textarea>
+            {/* <input type="text" name="comment" onChange={handleChange} /> */}
+            <button type="submit" className="mt-2 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                        Submit
+            </button>
+            {/* <input type="submit" value="Add Comment" /> */}
         </form>
     )
 }
