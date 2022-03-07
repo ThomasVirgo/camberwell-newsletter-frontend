@@ -8,7 +8,7 @@ const PostModal = ({toggleModal, info}) => {
     let [comments, setComments] = useState([])
 
     async function collectComments(){
-        const [data, isError] = await getCommentsForPost(info.id)
+        const [data, isError] = await getCommentsForPost(info.id, info.type)
         console.log(data);
         if (!isError){
             setComments(data)
@@ -45,7 +45,7 @@ const PostModal = ({toggleModal, info}) => {
                     <button onClick={toggleComments} className="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition">{areCommentsShowing ? 'Hide' : 'Show'} Comments</button>
                 </div>
                 <div className="max-h-72 overflow-y-scroll p-4">
-                    <CommentForm post_id = {info.id}></CommentForm>
+                    <CommentForm post_id = {info.id} type = {info.type}></CommentForm>
                     {areCommentsShowing && commentElements}
                 </div>
             </div>

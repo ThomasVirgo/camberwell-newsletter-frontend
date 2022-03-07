@@ -16,6 +16,8 @@ const Post = ({info, toggleModal}) => {
     } else {
         data = {
             "title": info.title,
+            "id": info.id,
+            "type": info.type,
             "content": info.description,
             "date": info.date,
             "image": info.image,

@@ -25,9 +25,9 @@ async function getMeals(){
     }
 }
 
-async function getCommentsForPost(post_id){
+async function getCommentsForPost(post_id, type){
     try {
-        const {data} = await axios.get(`${BASE_URL}/post_comments/${post_id}/comments_on_post/`, {
+        const {data} = await axios.get(`${BASE_URL}/${type === 'post' ? 'post_comments' : 'meal_comments'}/${post_id}/comments_on_post/`, {
             headers: tokenHeader()
         })
         return [data, false]
@@ -65,9 +65,9 @@ async function createMeal(formData){
 }
 
 
-async function createComment(payload){
+async function createComment(payload, type){
     try {
-        const {data} = await axios.post(`${BASE_URL}/post_comments/add_comment_by_email/`, payload, {
+        const {data} = await axios.post(`${BASE_URL}/${type === 'post' ? 'post_comments' : 'meal_comments'}/add_comment_by_email/`, payload, {
                 headers: tokenHeader()
         })
         return [data, false]
