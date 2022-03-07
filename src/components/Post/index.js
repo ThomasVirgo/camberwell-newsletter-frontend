@@ -11,7 +11,7 @@ const Post = ({info, toggleModal}) => {
     //     "author_names": {first_name, last_name}
     // }
     let data;
-    if (info.author_names){
+    if (info.type === 'post'){
         data = info
     } else {
         data = {

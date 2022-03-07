@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { getMeals } from "../../lib/requests_posts";
-import { Post, PostModal, MealForm } from "../../components";
+import { Post, PostModal, MealForm, LoadingBar } from "../../components";
 
 const Meals = () => {
     
@@ -8,13 +8,14 @@ const Meals = () => {
     const [meals, setMeals] = useState([])
     const [isModalShowing, setIsModalShowing] = useState(false)
     const [modalData, setModalData] = useState(null)
+    const [loading, setLoading] = useState(true)
 
     useEffect(()=>{
         async function requestMeals(){
             const [data, isError] = await getMeals()
             if (!isError){
                 setMeals(data)
-                console.log(data);
+                setLoading(false)
             } else {
                 console.log('unable to get posts');
             }
@@ -43,7 +44,8 @@ const Meals = () => {
           </div>
         </div>
         {isModalShowing && <PostModal toggleModal={toggleModal} info={modalData}/>}
-        { isFormShowing && <MealForm toggleForm={toggleForm}/>}
+        {isFormShowing && <MealForm toggleForm={toggleForm}/>}
+        {loading && <LoadingBar />}
         <div className="flex items-center justify-center">
             <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3">
                 {mealElements}

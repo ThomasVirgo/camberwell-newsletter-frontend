@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { getPosts } from "../../lib/requests_posts";
-import { Post, PostModal, PostForm } from "../../components";
+import { Post, PostModal, PostForm, LoadingBar } from "../../components";
 
 const Posts = () => {
     const [posts, setPosts] = useState([])
     const [isFormShowing, setIsFormShowing] = useState(false)
     const [isModalShowing, setIsModalShowing] = useState(false)
     const [modalData, setModalData] = useState(null)
+    const [loading, setLoading] = useState(true)
     
     
     useEffect(()=>{
@@ -14,6 +15,7 @@ const Posts = () => {
             const [data, isError] = await getPosts()
             if (!isError){
                 setPosts(data)
+                setLoading(false)
             } else {
                 console.log('unable to get posts');
             }
@@ -47,6 +49,8 @@ const Posts = () => {
         { isFormShowing && <PostForm/>}
 
         
+        {loading && <LoadingBar />}
+
         <div className="flex items-center justify-center">
             <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3">
                 {postElements}
