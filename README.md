@@ -1,6 +1,11 @@
 # To Do
-- add a rating to the post modal comment form for meals and connect to backend
-- show comments on the meals with corresponding rating
-- only allow users to create one rating
+- show average rating on the meals page
+- only allow each user to make one comment
+- only allow one meal per day per person to be uploaded
+- update the ui when a new meal is added / create a popup that says successfull added meal
 - show average rating on cards
+- add user email reminders to those who have not signed up
+- create newsletters weekly and send out to users
+- add change email etc. on the accounts page
+- add stats on accounts page
 

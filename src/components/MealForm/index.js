@@ -71,7 +71,15 @@ const MealForm = ({toggleForm}) => {
                             Made by
                             </label>
                             <div className="mt-1 flex rounded-md shadow-sm">
-                            <input onChange={handleChange} type="text" name="made_by" id="made_by" className="focus:ring-indigo-500 focus:border-indigo-500 flex-1 block w-full rounded-none rounded-r-md sm:text-sm border-gray-300" placeholder="Charlie Mabbutt"/>
+                            <select name="made_by" value={postInput.made_by} onChange={handleChange}>
+                                <option value="Tom">Tom</option>
+                                <option value="George">George</option>
+                                <option value="Amber">Amber</option>
+                                <option value="Charlie">Charlie</option>
+                                <option value="Robin">Robin</option>
+                                <option value="Luke">Luke</option>
+                            </select>
+                            {/* <input onChange={handleChange} type="text" name="made_by" id="made_by" className="focus:ring-indigo-500 focus:border-indigo-500 flex-1 block w-full rounded-none rounded-r-md sm:text-sm border-gray-300" placeholder="Charlie Mabbutt"/> */}
                             </div>
                         </div>
                         </div>
