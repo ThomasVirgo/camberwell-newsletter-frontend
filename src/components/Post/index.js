@@ -14,8 +14,15 @@ const Post = ({info, toggleModal}) => {
     if (info.type === 'post'){
         data = info
     } else {
+        let avgRating = '';
+        if (info.comments.length > 0){
+            let totRating = 0;
+            info.comments.forEach(x => totRating+=x)
+            avgRating = `${Math.round((totRating/info.comments.length)*10) / 10}/10`
+        }
         data = {
             "title": info.title,
+            "rating": avgRating,
             "id": info.id,
             "type": info.type,
             "content": info.description,
@@ -31,7 +38,12 @@ const Post = ({info, toggleModal}) => {
     return (
         <div onClick={() => toggleModal(data)} className="relative bg-white py-3 px-6 rounded-3xl w-80 h-80 my-4 shadow-xl hover:bg-gray-200 hover:cursor-pointer">
             <div className="mt-8">
-                <p className="text-lg font-semibold my-2 hover:cursor-pointer">{data.title}</p>
+                <div className="flex justify-between">
+                    <span className="text-lg font-semibold my-2 hover:cursor-pointer">{data.title}</span>
+                    {data?.rating && 
+                        <span className="mt-3 text-gray-700 text-md">{data.rating}</span>
+                    }
+                </div>
                 <div>
                     <img className="object-scale-down h-48 w-96" alt="" src={img_url}/>
                 </div>

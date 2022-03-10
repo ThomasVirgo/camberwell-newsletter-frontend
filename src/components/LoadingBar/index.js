@@ -14,7 +14,7 @@ const LoadingBar = () => {
         }
         const intervalId = setInterval(() => {  
             setPercent(prev => incrementPercent(prev))
-        }, 50)
+        }, 70)
         
         return () => clearInterval(intervalId);
          
@@ -23,7 +23,7 @@ const LoadingBar = () => {
     return (
         <>
         <p className="text-center">Loading results, please wait ...</p>
-        <div className="w-full bg-gray-200 rounded-full">
+        <div className="w-full bg-gray-200 rounded-full m-6">
             <div className="bg-blue-600 text-xs font-medium text-blue-100 text-center p-0.5 leading-none rounded-l-full" style={styleObj}> {percent}%</div>
         </div>
         </>
