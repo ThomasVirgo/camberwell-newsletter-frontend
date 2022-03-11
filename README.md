@@ -1,4 +1,5 @@
 # To Do
+- sort meals to be newest first
 - add filters for meals e.g. by date, person, rating
 - only allow one meal per day per person to be uploaded
 - update the ui when a new meal is added / create a popup that says successfull added meal

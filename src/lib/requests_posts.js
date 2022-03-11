@@ -76,8 +76,19 @@ async function createComment(payload, type){
     }
 }
 
+async function sendNewMealEmail(payload){
+    try {
+        const {data} = await axios.post(`${BASE_URL}/new_meal_email/`, payload, {
+                headers: tokenHeader()
+        })
+        return [data, false]
+    } catch (error) {
+        return [error.response, true]
+    }
+}
+
 function tokenHeader(){
     return { "Authorization": `Token ${localStorage.getItem('token')}` }
 }
 
-export { createPost, getPosts, getCommentsForPost, createComment, getMeals, createMeal }
+export { createPost, getPosts, getCommentsForPost, createComment, getMeals, createMeal, sendNewMealEmail }

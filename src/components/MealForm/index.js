@@ -1,10 +1,10 @@
 import React, {useState} from "react";
-import { createMeal } from "../../lib/requests_posts";
+import { createMeal, sendNewMealEmail } from "../../lib/requests_posts";
 
 const MealForm = ({toggleForm}) => {
     const [postInput, setPostInput] = useState({
         "title": "",
-        "made_by": "",
+        "made_by": "Tom",
         "description":"",
         "image": null
     })
@@ -26,12 +26,33 @@ const MealForm = ({toggleForm}) => {
         setPostInput({
             "title": "",
             "description": "",
-            "made_by": "",
+            "made_by": "Tom",
             "image": null
         })
         toggleForm()
         console.log(data);
+        if (!isError){
+            let emailPayload = {
+                "title": data.title,
+                "description": data.description,
+                "image": data.image.replace("download", "view"),
+                "made_by": data.made_by,
+            }
+            let [emailData, error] = await sendNewMealEmail(emailPayload)
+            console.log(emailData);
+        }
     }
+
+    // {
+    //     "id": 6,
+    //     "type": "meal",
+    //     "comments": [],
+    //     "title": "Sausage and Mash",
+    //     "made_by": "George",
+    //     "description": "Creamy, and yum",
+    //     "date": "2022-03-11T09:13:58.553995Z",
+    //     "image": "https://drive.google.com/uc?id=14hnpQ_xCNkMcbCeLcmbqqO1Axh4ydzRp&export=download"
+    // }
 
     function handleChange(event){
         if (event.target.name === 'image'){
