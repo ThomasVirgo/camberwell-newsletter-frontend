@@ -37,7 +37,7 @@ const PostModal = ({toggleModal, info}) => {
         
                 <div className="max-h-72 overflow-y-scroll p-4">
                     <p>{info.content}</p>
-                    <img src={img_url} alt=""></img>
+                    <img className="max-w-md max-h-md" src={img_url} alt=""></img>
                 </div>
 
                 
