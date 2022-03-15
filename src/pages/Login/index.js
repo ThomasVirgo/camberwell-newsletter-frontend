@@ -1,5 +1,5 @@
 import React, { useState, useContext } from "react";
-import { login, getUser } from "../../lib/requests_auth";
+import { login, getUser, passwordReset } from "../../lib/requests_auth";
 import { useNavigate, Link } from "react-router-dom";
 import { authContext } from "../../contexts/AuthContext";
 
@@ -11,6 +11,7 @@ const Login = () => {
     })
     const navigate = useNavigate();
     const [error, setError] = useState('')
+    const [resetEmail, setResetEmail] = useState('')
     const { setAuthData } = useContext(authContext);
 
     function handleChange(event){
@@ -35,6 +36,17 @@ const Login = () => {
         }
     }
 
+    function changeEmail(event){
+        setResetEmail(event.target.value)
+    }
+
+    async function sendResetEmail(){
+        let [data, isError] = await passwordReset({
+            "email": resetEmail
+        })
+        console.log(data);
+    }
+
     return (
         <>
         <h1 className="text-2xl text-center mt-32">Login</h1>
@@ -56,6 +68,11 @@ const Login = () => {
             </div>
             <div className="w-full flex flex-row justify-center mt-2">
                 <p className="text-red-700">{error}</p>
+            </div>
+            <div className="w-full flex flex-row justify-center">
+                <p>Forgotten password?</p>
+                <input onChange={changeEmail} type="email" placeholder="email..." value={resetEmail} />
+                <button onClick = {sendResetEmail}>Reset</button>
             </div>
         
         </>

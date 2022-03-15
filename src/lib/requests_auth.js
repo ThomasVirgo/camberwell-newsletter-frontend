@@ -8,6 +8,26 @@ async function signup(payload) {
     return data
 }
 
+async function passwordReset(payload) {
+    // payload = {email: ''}
+    try {
+        const {data, error} = await axios.post(`${BASE_URL}/password/reset/`, payload)
+        return [data, false]
+    } catch (error) {
+        return [error.response, true]
+    }
+}
+
+async function passwordResetVerify(payload) {
+    // payload = {code: '', password: ''}
+    try {
+        const {data, error} = await axios.post(`${BASE_URL}/password/reset/verified/`, payload)
+        return [data, false]
+    } catch (error) {
+        return [error.response, true]
+    }
+}
+
 async function verify(code) {
     try {
         const {data} = await axios.get(`${BASE_URL}/signup/verify/?code=${code}`)
@@ -48,14 +68,6 @@ async function logout(){
     }
 }
 
-async function changePassword(){
-
-}
-
-async function changeEmail(){
-
-}
-
 function tokenHeader(token=false){
     if (!token){
         return { "Authorization": `Token ${localStorage.getItem('token')}` }
@@ -66,4 +78,4 @@ function tokenHeader(token=false){
 }
 
 
-export { signup, verify, login, logout, getUser }
+export { signup, verify, login, logout, getUser, passwordReset, passwordResetVerify }
