@@ -22,9 +22,9 @@ const Verify = () => {
 
     return (
         <>
-        <h1>Verifying your account ...</h1>
-        <p>{error}</p>
-        {isVerified && <p>Your account has been successfully verified, please login <Link to='login'>here</Link></p>}
+        <h1 className="text-center mt-5">Verifying your account ...</h1>
+        <p className="m-5 text-center text-red-500">{error}</p>
+        {isVerified && <p className="m-5 text-center">Your account has been successfully verified, please login <Link className="underline" to='/login'>here</Link></p>}
         </>
     )
 }
