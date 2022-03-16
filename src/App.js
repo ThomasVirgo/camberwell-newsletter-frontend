@@ -4,7 +4,7 @@ import {
   Routes,
   Route
 } from "react-router-dom";
-import { ProtectedRoute, Login, Register, Verify, Dashboard } from './pages'
+import { ProtectedRoute, Login, Register, Verify, Dashboard, ResetPassword } from './pages'
 
 const App = () => {
   return (
@@ -13,6 +13,7 @@ const App = () => {
       <BrowserRouter>
         <Routes>
             <Route exact path="login" element={<Login />} />
+            <Route exact path="login/:code" element={<ResetPassword />} />
             <Route exact path="register" element={<Register />} />
             <Route exact path="verify/:code" element={<Verify />} />
             <Route element={<ProtectedRoute/>}>

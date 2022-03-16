@@ -13,6 +13,9 @@ const Login = () => {
     const [error, setError] = useState('')
     const [resetEmail, setResetEmail] = useState('')
     const { setAuthData } = useContext(authContext);
+    const [loading, setLoading] = useState(false)
+    const [resetSent, setResetSent] = useState(false)
+    const [resetError, setResetError] = useState('')
 
     function handleChange(event){
         let newInput = {
@@ -41,9 +44,21 @@ const Login = () => {
     }
 
     async function sendResetEmail(){
+        if (resetEmail.length === 0){
+            return
+        }
+        setLoading(true)
         let [data, isError] = await passwordReset({
             "email": resetEmail
         })
+        if (!isError){
+            setResetSent(true)
+            setResetError("")
+        } else {
+            setResetError(data.data.detail)
+        }
+        setResetEmail("")
+        setLoading(false)
         console.log(data);
     }
 
@@ -69,12 +84,14 @@ const Login = () => {
             <div className="w-full flex flex-row justify-center mt-2">
                 <p className="text-red-700">{error}</p>
             </div>
-            <div className="w-full flex flex-row justify-center">
+            <div className="max-w-2xl mx-auto mt-5 flex flex-col gap-2 justify-center">
                 <p>Forgotten password?</p>
-                <input onChange={changeEmail} type="email" placeholder="email..." value={resetEmail} />
-                <button onClick = {sendResetEmail}>Reset</button>
+                <input onChange={changeEmail} type="email" placeholder="enter email..." value={resetEmail} className="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" />
+                <button disabled={resetSent} onClick = {sendResetEmail} className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">{loading ? 'sending reset email...' : resetSent ? 'Reset Email Sent!' : 'Send Reset Email'}</button>
             </div>
-        
+            <div className="w-full flex flex-row justify-center mt-2">
+                <p className="text-red-700">{resetError}</p>
+            </div>
         </>
     )
 }
