@@ -28,6 +28,18 @@ async function passwordResetVerify(payload) {
     }
 }
 
+async function changePassword(payload, token) {
+    // payload = {password: ''}
+    try {
+        const {data, error} = await axios.post(`${BASE_URL}/password/change/`, payload, {
+            headers: tokenHeader(token)
+        })
+        return [data, false]
+    } catch (error) {
+        return [error.response, true]
+    }
+}
+
 async function verify(code) {
     try {
         const {data} = await axios.get(`${BASE_URL}/signup/verify/?code=${code}`)
@@ -78,4 +90,4 @@ function tokenHeader(token=false){
 }
 
 
-export { signup, verify, login, logout, getUser, passwordReset, passwordResetVerify }
+export { signup, verify, login, logout, getUser, passwordReset, passwordResetVerify, changePassword }

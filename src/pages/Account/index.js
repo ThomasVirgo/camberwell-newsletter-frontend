@@ -1,4 +1,5 @@
 import React from "react";
+import { changePassword } from "../../lib/requests_auth";
 
 const Account = () => {
     return (
