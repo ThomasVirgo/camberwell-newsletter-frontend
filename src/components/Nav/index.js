@@ -34,14 +34,13 @@ const Nav = () => {
             <div className="flex items-center justify-between h-16">
               <div className="flex items-center">
                 <div className="flex-shrink-0">
-                  <p className="text-white font-bold text-xl">142A Newsletter</p>
+                  <p className="text-white font-bold text-xl">Camberswell</p>
                 </div>
                 <div className="hidden md:block">
                   <div className="ml-10 flex items-baseline space-x-4">
                     <Link to="account" className=" hover:bg-gray-700 text-white px-3 py-2 rounded-md text-sm font-medium">Account</Link>
                     <Link to="posts" className=" hover:bg-gray-700 text-white px-3 py-2 rounded-md text-sm font-medium">Posts</Link>
                     <Link to="meals" className=" hover:bg-gray-700 text-white px-3 py-2 rounded-md text-sm font-medium">Meals</Link>
-                    <Link to="newsletters" className=" hover:bg-gray-700 text-white px-3 py-2 rounded-md text-sm font-medium">Newsletters</Link>
                     <button onClick = {logoutUser} className=" hover:bg-gray-700 text-white px-3 py-2 rounded-md text-sm font-medium">Logout</button>
                   </div>
                 </div>
@@ -98,7 +97,6 @@ const Nav = () => {
                     <Link to="account" className="hover:bg-gray-700 text-white block px-3 py-2 rounded-md text-base font-medium">Account</Link>
                     <Link to="posts" className="hover:bg-gray-700 text-white block px-3 py-2 rounded-md text-base font-medium">Posts</Link>
                     <Link to="meals" className="hover:bg-gray-700 text-white block px-3 py-2 rounded-md text-base font-medium">Meals</Link>
-                    <Link to="newsletters" className="hover:bg-gray-700 text-white block px-3 py-2 rounded-md text-base font-medium">Newsletters</Link>
                     <button onClick = {logoutUser} className="hover:bg-gray-700 text-white block w-full text-left px-3 py-2 rounded-md text-base font-medium">Logout</button>
                 </div>
               </div>}
