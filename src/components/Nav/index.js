@@ -6,7 +6,6 @@ import { logout } from "../../lib/requests_auth";
 const Nav = () => {
     const [isOpen, setIsOpen] = useState(false);
     const { auth, setAuthData } = useContext(authContext);
-    console.log(auth);
     const {pathname} = useLocation();
     let pathArr = pathname.split('/')
     let path = pathArr[pathArr.length - 1]
@@ -25,7 +24,6 @@ const Nav = () => {
         const data = await logout()
         localStorage.clear()
         setAuthData(null)
-        console.log(data);
     }
     return (
         <div>
