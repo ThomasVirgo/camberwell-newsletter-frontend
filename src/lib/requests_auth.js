@@ -1,6 +1,7 @@
 import axios from "axios";
 
-const BASE_URL = 'http://localhost:8000/api/accounts'
+// const BASE_URL = 'http://localhost:8000/api/accounts'
+const BASE_URL = 'https://backend-142a.herokuapp.com/api/accounts'
 
 async function signup(payload) {
     // const payload = {email, password, first_name, last_name} ---- for reference

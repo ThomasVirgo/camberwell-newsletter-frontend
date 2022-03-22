@@ -1,6 +1,7 @@
 import axios from "axios";
 
-const BASE_URL = 'http://localhost:8000/api/models'
+// const BASE_URL = 'http://localhost:8000/api/models'
+const BASE_URL = 'https://backend-142a.herokuapp.com/api/models'
 
 
 async function getPosts(){
