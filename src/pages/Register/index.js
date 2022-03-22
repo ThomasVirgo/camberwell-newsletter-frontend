@@ -49,7 +49,7 @@ const Register = () => {
 
     return (
         <>
-        <h1 className="text-2xl text-center mt-32">Register</h1>
+        <h1 className="text-2xl text-center mt-24">Register</h1>
         <div className="max-w-2xl mx-auto mt-3.5">
             <div className="m-5">
                 <form onSubmit={handleSubmit}>
