@@ -1,4 +1,5 @@
 # To Do
+- colour code the stats table
 - show user feedback on change password
 - add clean up on async code to stop requests if user changes tab mid request
 - only allow one meal per day per person to be uploaded

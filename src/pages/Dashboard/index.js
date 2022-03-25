@@ -1,6 +1,6 @@
 import React from "react";
 import { Route, Routes } from "react-router-dom";
-import { Posts, Account, Meals } from "..";
+import { Posts, Account, Meals, Stats } from "..";
 import { Nav } from "../../components";
 
 const Dashboard = () => {
@@ -12,6 +12,7 @@ const Dashboard = () => {
             <Route path="account" element={<Account />} />
             <Route path="posts" element={<Posts />} />
             <Route path="meals" element={<Meals />} />
+            <Route path="stats" element={<Stats />} />
         </Routes>
         </>
     )

@@ -39,6 +39,7 @@ const Nav = () => {
                     <Link to="account" className=" hover:bg-gray-700 text-white px-3 py-2 rounded-md text-sm font-medium">Account</Link>
                     <Link to="posts" className=" hover:bg-gray-700 text-white px-3 py-2 rounded-md text-sm font-medium">Posts</Link>
                     <Link to="meals" className=" hover:bg-gray-700 text-white px-3 py-2 rounded-md text-sm font-medium">Meals</Link>
+                    <Link to="stats" className=" hover:bg-gray-700 text-white px-3 py-2 rounded-md text-sm font-medium">Stats</Link>
                     <button onClick = {logoutUser} className=" hover:bg-gray-700 text-white px-3 py-2 rounded-md text-sm font-medium">Logout</button>
                   </div>
                 </div>
@@ -95,6 +96,7 @@ const Nav = () => {
                     <Link to="account" className="hover:bg-gray-700 text-white block px-3 py-2 rounded-md text-base font-medium">Account</Link>
                     <Link to="posts" className="hover:bg-gray-700 text-white block px-3 py-2 rounded-md text-base font-medium">Posts</Link>
                     <Link to="meals" className="hover:bg-gray-700 text-white block px-3 py-2 rounded-md text-base font-medium">Meals</Link>
+                    <Link to="stats" className="hover:bg-gray-700 text-white block px-3 py-2 rounded-md text-base font-medium">Stats</Link>
                     <button onClick = {logoutUser} className="hover:bg-gray-700 text-white block w-full text-left px-3 py-2 rounded-md text-base font-medium">Logout</button>
                 </div>
               </div>}

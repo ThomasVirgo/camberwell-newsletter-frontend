@@ -1,0 +1,60 @@
+import React, { useState, useEffect } from "react";
+import { getMeals } from "../../lib/requests_posts";
+import { TableRow } from "../../components";
+import calculateStats from "../../lib/utils/calculate_table_data";
+
+
+const Stats = () => {
+    const [stats, setStats] = useState({})
+    const names = ['Tom', 'Charlie', 'Luke', 'Robin', 'George', 'Amber']
+
+    const rowElements = names.map((name, idx) => 
+        <TableRow key={idx} name={name} stats={stats}></TableRow>
+    )
+
+    useEffect(()=>{
+        async function collectMeals(){
+            const [data, isError] = await getMeals()
+            if (!isError){
+                let newStats = calculateStats(data)
+                console.log(newStats);
+                setStats(newStats)
+            } else {
+                console.log('unable to collect meals');
+            }
+        }
+        collectMeals()
+    }, [])
+    return (
+        <>
+        <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
+            <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+                <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                    <tr>
+                        <th scope="col" className="px-6 py-3">
+                            Name
+                        </th>
+                        <th scope="col" className="px-6 py-3">
+                            Meals Made
+                        </th>
+                        <th scope="col" className="px-6 py-3">
+                            Avg Rating
+                        </th>
+                        <th scope="col" className="px-6 py-3">
+                            Avg No Comments
+                        </th>
+                        <th scope="col" className="px-6 py-3">
+                            Latest Meal
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {rowElements}
+                </tbody>
+            </table>
+        </div>
+        </>
+    )
+}
+
+export default Stats;
