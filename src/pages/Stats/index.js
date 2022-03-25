@@ -7,8 +7,9 @@ import calculateStats from "../../lib/utils/calculate_table_data";
 const Stats = () => {
     const [stats, setStats] = useState({})
     const names = ['Tom', 'Charlie', 'Luke', 'Robin', 'George', 'Amber']
+    const [sortedNames, setSortedNames] = useState(names)
 
-    const rowElements = names.map((name, idx) => 
+    const rowElements = sortedNames.map((name, idx) => 
         <TableRow key={idx} name={name} stats={stats}></TableRow>
     )
 
@@ -17,7 +18,6 @@ const Stats = () => {
             const [data, isError] = await getMeals()
             if (!isError){
                 let newStats = calculateStats(data)
-                console.log(newStats);
                 setStats(newStats)
             } else {
                 console.log('unable to collect meals');
@@ -25,6 +25,18 @@ const Stats = () => {
         }
         collectMeals()
     }, [])
+
+
+    function sortNames(by){
+        let newNames = [...names]
+        newNames.sort((a,b) => {
+            let firstVal = stats[a][by]
+            let secondVal = stats[b][by]
+            return secondVal - firstVal
+        })
+        setSortedNames(newNames)
+    }
+
     return (
         <>
         <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
@@ -32,16 +44,16 @@ const Stats = () => {
                 <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                     <tr>
                         <th scope="col" className="px-6 py-3">
-                            Name
+                            Name 
                         </th>
                         <th scope="col" className="px-6 py-3">
-                            Meals Made
+                            Meals Made <span onClick={() => sortNames('mealsMade')} className="font-medium text-blue-600 dark:text-blue-500 hover:underline mx-5 hover:cursor-pointer">Sort</span>
                         </th>
                         <th scope="col" className="px-6 py-3">
-                            Avg Rating
+                            Avg Rating <span onClick={() => sortNames('avgRating')} className="font-medium text-blue-600 dark:text-blue-500 hover:underline mx-5 hover:cursor-pointer">Sort</span>
                         </th>
                         <th scope="col" className="px-6 py-3">
-                            Avg No Comments
+                            Avg No Comments <span onClick={() => sortNames('avgComments')} className="font-medium text-blue-600 dark:text-blue-500 hover:underline mx-5 hover:cursor-pointer">Sort</span>
                         </th>
                         <th scope="col" className="px-6 py-3">
                             Latest Meal

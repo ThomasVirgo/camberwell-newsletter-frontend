@@ -3,6 +3,7 @@ function calculateStats(meals){
 
     class UserStats {
         constructor(meals, name) {
+          this.name = name
           this.myMeals = meals.filter(meal => meal.made_by === name)
           this.mealsMade = this.myMeals.length
           this.avgRating = 0
@@ -39,10 +40,13 @@ function calculateStats(meals){
       }
         
     
-    let returnObject = {}
-    names.forEach(name => returnObject[name] = new UserStats(meals, name))
+    let statsDict = {}
+    names.forEach(name => {
+        let userStats = new UserStats(meals, name)
+        statsDict[name] = userStats
+    })
 
-    return returnObject
+    return statsDict
 }
 
 
