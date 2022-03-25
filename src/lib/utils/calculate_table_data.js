@@ -23,7 +23,7 @@ function calculateStats(meals){
                 count += 1
             }))
             let avgRating = Math.round((total/count) * 100) / 100 
-            let avgComments = Math.round((count/meals.length) * 100) / 100 
+            let avgComments = Math.round((count/this.myMeals.length) * 100) / 100 
             this.avgRating = avgRating
             this.avgComments = avgComments
         }
