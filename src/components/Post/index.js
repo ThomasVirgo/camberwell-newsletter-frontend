@@ -39,7 +39,7 @@ const Post = ({info, toggleModal}) => {
         <div onClick={() => toggleModal(data)} className="relative bg-white py-3 px-6 rounded-3xl w-80 h-80 my-4 shadow-xl hover:bg-gray-200 hover:cursor-pointer">
             <div className="mt-8">
                 <div className="flex justify-between">
-                    <span className="text-lg font-semibold my-2 hover:cursor-pointer">{data.title}</span>
+                    <span className="text-base font-semibold my-2 hover:cursor-pointer">{data.title}</span>
                     {data?.rating && 
                         <span className="mt-3 text-gray-700 text-md">{data.rating}</span>
                     }
@@ -49,7 +49,7 @@ const Post = ({info, toggleModal}) => {
                 </div>
                 <div className="flex justify-between">
                     <div className="my-2">
-                        <p className="font-semibold text-base mb-2">{data.author_names.first_name} {data.author_names.last_name}</p>
+                        <p className="font-semibold text-base mb-2">{data.author_names.first_name}</p>
                     </div>
                      <div className="my-2">
                         <p className="font-semibold text-gray-400 mb-2">{new Date(data.date).toLocaleDateString("en-US", options)}</p>

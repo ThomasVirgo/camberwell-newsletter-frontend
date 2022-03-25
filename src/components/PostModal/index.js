@@ -26,7 +26,7 @@ const PostModal = ({toggleModal, info}) => {
 
     return (
         <div id="modal" className="fixed z-50 inset-0 bg-gray-900 bg-opacity-60 overflow-y-auto h-full w-full px-4">
-            <div className="relative top-20 mx-auto shadow-lg rounded-md bg-white">
+            <div className="relative top-10 mx-auto shadow-lg rounded-md bg-white">
 
                 
                 <div className="flex justify-between items-center bg-green-500 text-white text-xl rounded-t-md px-4 py-2">
@@ -37,7 +37,7 @@ const PostModal = ({toggleModal, info}) => {
         
                 <div className="max-h-72 overflow-y-scroll p-4">
                     <p>{info.content}</p>
-                    <img className="max-w-md max-h-md" src={img_url} alt=""></img>
+                    <img className="max-w-xs max-h-xs" src={img_url} alt=""></img>
                 </div>
 
                 
