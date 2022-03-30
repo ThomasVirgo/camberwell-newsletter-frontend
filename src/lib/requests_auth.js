@@ -29,6 +29,7 @@ async function passwordResetVerify(payload) {
     }
 }
 
+
 async function changePassword(payload, token) {
     // payload = {password: ''}
     try {

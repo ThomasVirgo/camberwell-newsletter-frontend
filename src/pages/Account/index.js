@@ -6,7 +6,9 @@ const Account = () => {
         "password": "",
         "password2": ""
     })
+
     const [loading, setLoading] = useState(false)
+    const [changeComplete, setChangeComplete] = useState(false)
     const [error, setError] = useState('')
 
     function handleChange(event){
@@ -21,6 +23,16 @@ const Account = () => {
             setError('Passwords must match.')
             return
         }
+        setLoading(true)
+        const [data, isError] = await changePassword({"password": input.password})
+        setLoading(false)
+        setError('')
+        setChangeComplete(true)
+        setInput({
+            "password": "",
+            "password2": ""
+        })
+        console.log(data);
     }
 
     return (
@@ -37,13 +49,22 @@ const Account = () => {
                         <label htmlFor="password">Confirm New Password</label>
                         <input onChange = {handleChange} value={input.password2} name='password2' type="password" className="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-900 leading-tight focus:outline-none focus:bg-white focus:border-purple-500" placeholder="Confirm New Password" required />
                     </div>
+                    {loading ? 
+                    <button className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Loading...</button>
+                    :
                     <button type="submit" className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Submit</button>
+                    }
                 </form>
             </div>
         </div>
         <div className="w-full flex flex-row justify-center mt-2">
             <p className="text-red-700">{error}</p>
         </div>
+        {changeComplete && 
+        <div className="w-full flex flex-row justify-center mt-2">
+            <p className="text-green-700">Your password has been successfully changed.</p>
+        </div>
+        }
         </>
     )
 }
