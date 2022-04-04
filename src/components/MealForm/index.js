@@ -1,5 +1,6 @@
 import React, {useState} from "react";
 import { createMeal, sendNewMealEmail } from "../../lib/requests_posts";
+import Resizer from "react-image-file-resizer";
 
 const MealForm = ({toggleForm}) => {
     const [postInput, setPostInput] = useState({
@@ -9,18 +10,41 @@ const MealForm = ({toggleForm}) => {
         "image": null
     })
 
+    const resizeFile = (file) =>
+        new Promise((resolve) => {
+            Resizer.imageFileResizer(
+            file,
+            200,
+            200,
+            "JPEG",
+            50,
+            0,
+            (uri) => {
+                resolve(uri);
+            },
+            "blob"
+            );
+    });
+
     const [loading, setLoading] = useState(false)
 
     async function handleSubmit(event){
         // need to wait for the post to be successful before doing anything else, i.e. freeze page
         event.preventDefault()
         console.log(postInput);
+        setLoading(true)
         let formData = new FormData();
-        formData.append('image', postInput.image, postInput.image.name);
+        let resizedImage;
+        try {
+            resizedImage = await resizeFile(postInput.image);
+            console.log(resizedImage);
+          } catch (err) {
+            console.log(err);
+        }
+        formData.append('image', resizedImage, postInput.image.name);
         formData.append('title', postInput.title);
         formData.append('made_by', postInput.made_by);
         formData.append('description', postInput.description);
-        setLoading(true)
         let [data, isError] = await createMeal(formData)
         setLoading(false)
         setPostInput({
@@ -42,17 +66,6 @@ const MealForm = ({toggleForm}) => {
             console.log(emailData);
         }
     }
-
-    // {
-    //     "id": 6,
-    //     "type": "meal",
-    //     "comments": [],
-    //     "title": "Sausage and Mash",
-    //     "made_by": "George",
-    //     "description": "Creamy, and yum",
-    //     "date": "2022-03-11T09:13:58.553995Z",
-    //     "image": "https://drive.google.com/uc?id=14hnpQ_xCNkMcbCeLcmbqqO1Axh4ydzRp&export=download"
-    // }
 
     function handleChange(event){
         if (event.target.name === 'image'){
