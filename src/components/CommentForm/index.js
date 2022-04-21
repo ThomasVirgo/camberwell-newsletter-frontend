@@ -41,7 +41,7 @@ const CommentForm = ({post_id, type}) => {
             {type === 'meal' && 
             <div className="relative pt-1">
                 <label htmlFor="rating" className="form-label">Rating: {rating}/10</label>
-                <input onChange={ratingChange} name="rating" value={rating} type="range" className="form-range appearance-none w-full h-6 p-0 bg-gray-300 rounded-md focus:outline-none focus:ring-0 focus:shadow-none" min="0" max="10" step="1"/>
+                <input onChange={ratingChange} name="rating" value={rating} type="range" className="form-range appearance-none w-full h-6 p-0 bg-gray-300 rounded-md focus:outline-none focus:ring-0 focus:shadow-none" min="1" max="10" step="1"/>
             </div>
             }
             <button type="submit" className="mt-2 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
